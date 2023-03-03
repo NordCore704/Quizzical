@@ -1,3 +1,4 @@
+// This is a file I used to test the app process without an api call
 export default [{
     id: 1,
     category: "History",

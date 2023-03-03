@@ -102,8 +102,7 @@ const App = () => {
 
   //====== Online Test ======
 
-
-
+  //This is an online version of the code, with an api call
   // The API call to OTDB, this will assign the returning array of object to the allQuestions state
     useEffect(() => {
         axios.get('https://opentdb.com/api.php?amount=5').then(response => setAllQuestions(response.data.results))
@@ -134,6 +133,7 @@ const handleWelcome = () => {
 
   ///====== Offline test =======
 
+  //This is an offline version of the code where i map through an external imported js file with an array of questions object
   let styles = {
     backgroundColor: "#319ef8",
   };
