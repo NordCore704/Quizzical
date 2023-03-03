@@ -1,0 +1,309 @@
+/* A more complex design option... these are the options:
+    ** Glassmorphic on each question component--- wasn't so cool
+    ** Neuromorphic on each question component--- this worked
+    ** Glass and Neuro on the whole project, combined styling--- nahh not for this project
+    ** Change the color scheme?--- lets get digging with this one
+    ** Two blobs currently being animated across the screen
+        *Do we need more
+        *Or should their animations be better?
+    ** What about a dark mode feature using local storage? --Done
+*/
+html, :root{
+    --Dark-Blue: rgb(27, 24, 185);
+    --Dark-Grey: rgb(35, 35, 54);
+    --Red: #ee0303;
+    --Green: #2cce0b;
+    --Neon: #fa344f;
+    --Coffee: #fcd2b6;
+    --White-Purple: #e5e5f7;
+    transition: 0.8s ease-in-out;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: 'Itim', cursive;
+    font-family: 'Ubuntu', sans-serif;
+    color: var(--Dark-Grey);
+}
+html.dark{
+    background-color: #0c0c0c;
+    opacity: 1;
+    filter: invert(100%);
+    background-color: rgb(116, 86, 7) !important;
+    transition: 0.8s ease-in-out;
+}
+button{
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+.App{
+    width: auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: #fcd2b6; */
+    /* chip this in... */
+    opacity: 0.8;
+    background-color: var(--White-Purple);
+    /* background: radial-gradient(circle, transparent 20%, var(--White-Purple) 20%, var(--White-Purple) 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, var(--White-Purple) 20%, var(--White-Purple) 80%, transparent 80%, transparent) 70px 70px, linear-gradient(#444cf7 5.6000000000000005px, transparent 5.6000000000000005px) 0 -2.8000000000000003px, linear-gradient(90deg, #444cf7 5.6000000000000005px, var(--White-Purple)) -2.8000000000000003px 0;
+    background-size: 140px 140px, 140px 140px, 70px 70px, 70px 70px; */
+}
+@keyframes blob2 {
+    50%{
+        height: 100%;
+        width: 100%;
+        transition: 0.5s ease;
+        clip-path: circle(20% at 35% 50%);
+    }
+}
+.mode--btn{
+    margin: 0 0 10px 0;
+    width: 64px;
+    height: 64px;
+    border-radius: 100%;
+    background-color: var(--White-Purple);
+}
+.mode--btn:hover{
+    box-shadow: -2px 2px 20px #0ad2ec;
+    background-color: #0ad2ec;
+    transition: ease-in-out 0.5s; 
+}
+.icon {
+    width: 64px;
+    height: 64px;
+}
+.icon:hover{
+    filter: invert(100%);
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+}
+/* This a design that is cool but does not fit into this project */
+/* .blob-container{
+    justify-self: center;
+    align-self: center;
+    z-index: -1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%);
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+.blob, .blob2{
+    width: 300px;
+    height: 300px;
+    border-radius: 100%;
+    background-color: #444cf7;
+    mix-blend-mode: multiply;
+    filter: blur(20px);
+    /* animation: blob 5s infinite linear;
+}
+.blob2{
+    background-color: #eeff04e5;
+} */
+
+.App::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    /* background: linear-gradient(#2196f3, #1dc2dfd2); */
+    background: linear-gradient(to right, #444cf7, #0a14d6);
+    clip-path: circle(30% at right 90%);
+    transition: 1s ease-in-out;
+    animation: blob3 15s infinite linear;
+    z-index: 0;
+}
+.App::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to left, #ee6103, #eeff04e5);
+    clip-path: circle(20% at 10% 10%);
+    animation: blob 5s infinite linear;
+    transition: 0.5s ease-in-out;
+    z-index: 0;
+}
+@keyframes blob {
+    50%{
+        height: 90%;
+        width: 90%;
+        transition: 0.5s ease;
+    }
+}
+.intro{
+    z-index: 1;
+}
+/* @media (prefers-color-scheme: dark){
+    body{
+        filter: invert(100%);
+        background-color: rgb(89, 92, 91) !important;
+    }
+    img{
+        filter: invert(100%);
+    }
+} */
+.start--div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    background: linear-gradient(145deg, #C3C3D2, #ffffff);
+    box-shadow: 9.91px 9.91px 15px #D0D0E1, -9.91px -9.91px 15px #FAFAFF;
+    /* background-color: rgba(252, 210, 182,0.75); */
+    border: 1px solid rgba(209, 213, 219, 0.3);
+    backdrop-filter: blur(5px)  saturate(161%);
+    width: 50%;
+    height: 200px;
+    z-index: 1;
+}
+.start--btn, .end--btn, .restart--btn{
+    outline: transparent;
+    border: none;
+    width: 80px;
+    height: 30px;
+    border-radius: 10px;
+    color: var(--White-Purple);
+    /* background-color: #2196f3; */
+    background: linear-gradient(to left, #ee6103, #c2cf07e5);
+    margin: 10px 0;
+    transition: 0.4s ease-in-out;
+    z-index: 1;
+}
+.start--btn{
+    margin-bottom: 15px;
+}
+.start--btn:hover, .end--btn:hover, .restart--btn:hover{
+    box-shadow: 0px 0px 10px var(--Neon);
+    transition: ease 0.5s; 
+    color: var(--Neon);
+}
+.quiz--main{
+    width: 90%;
+    min-height: 15vh;
+    display: flex;
+    transition: 0.5s ease-in-out;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid #0575d1; */
+    border-radius: 10px;
+    padding: 10px 10px;
+    margin: 10px 0;
+    z-index: 1;
+    background: linear-gradient(145deg, #C3C3D2, #ffffff);
+    box-shadow: 9.91px 9.91px 15px #D0D0E1, -9.91px -9.91px 15px #FAFAFF;
+    /* background-color: rgba(252, 210, 182,0.75); */
+    border: 1px solid rgba(209, 213, 219, 0.3);
+    backdrop-filter: blur(5px)  saturate(161%);
+}
+.quiz--header{
+    margin: 0 0 10px 0;
+}
+.questions{
+    padding: 5px 0;
+}
+.answers--div{
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.show--score{
+    width: 100px;
+    height: 30px;
+    color: aliceblue;
+    background-color: var(--Dark-Blue);
+}
+.show--score:hover{
+    background-color: #ee0365;
+    transition: 0.4s ease-in-out;
+    box-shadow: 0px 2px 20px #ee0365;
+}
+.answers--div .answer-btn{
+     /* background-color: #319ef7; */
+     padding: 5px;
+     margin: 0 10px;
+     cursor: pointer;
+     border-radius: 5px;
+     background: linear-gradient(to right, #444cf7, #0410f5fb);
+     color: #e5e5f7;
+     transition: 0.4s ease-in-out;
+}
+.answer-btn.bg--picked{
+    color: white;
+    background: linear-gradient(to top right, #ee0365, #f55c9c);
+    transition: 0.5s ease-in-out;
+}
+.answer-btn.dark{
+    background-color: #42aa2d;
+}
+.none{
+    background-color: #ee6103;
+}
+.answer-btn.wrong{
+    background: linear-gradient(to left, var(--Red), #b80202);
+    color: aliceblue;
+    transition: 1s ease-in-out;
+}
+.answer-btn.correct{
+    background: linear-gradient(to left, var(--Green), #146903);
+    transition: 1s ease-in-out;
+}
+.answer-btn.dimmed {
+    opacity: 0.5;
+    transition: 1s ease-in-out;
+  }
+.warning{
+    transition: 0.8s ease-in-out;
+    text-align: center;
+    z-index: 1;
+}
+.answers--div button:hover{
+    transition: 0.4s ease-in-out;
+    /* color: #ee0365; */
+    border: 1px solid #ee0365;
+    box-shadow: 0px 2px 20px #ee0365;
+    outline: transparent;
+}
+
+@media all and (width <= 768px) {
+    .quiz--main{
+        width: 90%;
+        height: 30vh;
+        justify-content: space-around;
+    }
+
+}
+@media all and (width <= 600px) {
+    .App{
+        min-height: 100vh;
+    }
+    .quiz--main{
+        width: 98%;
+        height: 30vh;
+        justify-content: space-around;
+    }
+    .answers--div button{
+        margin: 0 0px;
+        padding: 2px;
+
+    }
+    .App::after{
+        clip-path: circle(30% at right 80%);
+    }
+    
+}
