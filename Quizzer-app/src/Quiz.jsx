@@ -1,16 +1,15 @@
 import React from "react";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, forwardRef, useImperativeHandle, useEffect } from "react";
 import { decode } from 'html-entities'
 import quizDataset from "./quiz-dataset";
 import { QuizContext } from "./helpers/context";
 
-const Quiz = (props) => {
+const Quiz = forwardRef((props, ref) => {
   // Here, the first state determines the selected answer, it literally is the feature, essentially the state recieves the vaue of the selected answer✅
   const [selected, setSelected] = useState("");
 
   // With the use of context API hook, we import the checker global state for conditioning.... below
   const { checker, darkMode } = useContext(QuizContext);
-
   // This function assigns the selected value to the selected state defined above on the click of the answer(below)
   const handleClick = (clicked, currentQuestion) => {
     setSelected(clicked);
@@ -77,6 +76,6 @@ const Quiz = (props) => {
             {numberOfCorrect !== 0 && checker ? <p>{numberOfCorrect !== 0 ? numberOfCorrect : '0'}</p> : ''} */}
     </>
   );
-};
+});
 
 export default Quiz;

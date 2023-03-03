@@ -90,15 +90,6 @@ const App = () => {
   const setAnswered = (value) => {
     setCurrentAnswer(value);
   };
-  const prevScoreRef = useRef(null);
-  const scores = (value) => {
-    setNumberOfCorrect((prev) => value);
-  };
-  let counter = 0;
-  numberOfCorrect === 1 ? counter++ : (counter = 0);
-  useEffect(() => {
-    prevScoreRef.current = numberOfCorrect;
-  }, [numberOfCorrect]);
 
   //====== Online Test ======
 
@@ -111,20 +102,18 @@ const App = () => {
 }, [start])
 
 // Mapping the allquestion array containing the question objects to a variable
-const quizEnter = allQuestions.map((questions) => {
+const quizEnter = allQuestions.map((questions, index) => {
     return <Quiz 
      question={questions.question}
-        key={questions.id}
+        key={index}
         answers={questions.correct_answer}
         shuffledAnswers={shuffle([
           ...questions.incorrect_answers,
           questions.correct_answer
         ])}
         setAnsweredValue={setAnswered}
-        setScoreValue={scores}
      />
-})  
-
+})
 // This function flips the initial values of it's underlying state to trigger the conditions of rendering the questions after the start screen
 const handleWelcome = () => {
     setStart(prevStart => !prevStart)
