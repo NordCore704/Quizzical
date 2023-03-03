@@ -143,42 +143,42 @@ const handleWelcome = () => {
   //   setQuiz([...quizMap]);
   // };
 
-  const quizMap = dataSet.map((item) => {
-    const newArr = shuffle([item.correct_answer, ...item.incorrect_answers]);
-    return (
-      <Quiz
-        question={item.question}
-        key={item.id}
-        id={item.id}
-        answers={item.correct_answer}
-        /* This(commented below) is a method of rendering answers but it is not quite efficient as it does not feature the following:
-         ***The correct answer is rendered seperately as it is not part of the wrong answers array
-         ***The above hinderance does not make for shuffling all the answers, just the wrong answers could be shuffled
-         */
-        // wrongAnswers={item.incorrect_answers.map((element) => (
-        //   <button onClick={} style={styles} key={element}>
-        //     {element}
-        //   </button>
-        // ))}
+  // const quizMap = dataSet.map((item) => {
+  //   const newArr = shuffle([item.correct_answer, ...item.incorrect_answers]);
+  //   return (
+  //     <Quiz
+  //       question={item.question}
+  //       key={item.id}
+  //       id={item.id}
+  //       answers={item.correct_answer}
+  //       /* This(commented below) is a method of rendering answers but it is not quite efficient as it does not feature the following:
+  //        ***The correct answer is rendered seperately as it is not part of the wrong answers array
+  //        ***The above hinderance does not make for shuffling all the answers, just the wrong answers could be shuffled
+  //        */
+  //       // wrongAnswers={item.incorrect_answers.map((element) => (
+  //       //   <button onClick={} style={styles} key={element}>
+  //       //     {element}
+  //       //   </button>
+  //       // ))}
 
-        shuffledAnswers={shuffle([
-          ...item.incorrect_answers,
-          item.correct_answer,
-        ])}
-        /**
-         * Shuffling the array(below) in a seperate empty array and mapping it from this component as props
-         * This is quite inefficient as events will not respond willingly on state change(state change is not absolute, it is relative to a neighboring component render state)
-         */
-        // answerArray={newArr.map((item, index) => {
-        //   return <button key={index} onClick={() => handleClick(item)} className={item === currentAnswer ? 'bg--picked' : ''}>{item}</button>
-        // })}
+  //       shuffledAnswers={shuffle([
+  //         ...item.incorrect_answers,
+  //         item.correct_answer,
+  //       ])}
+  //       /**
+  //        * Shuffling the array(below) in a seperate empty array and mapping it from this component as props
+  //        * This is quite inefficient as events will not respond willingly on state change(state change is not absolute, it is relative to a neighboring component render state)
+  //        */
+  //       // answerArray={newArr.map((item, index) => {
+  //       //   return <button key={index} onClick={() => handleClick(item)} className={item === currentAnswer ? 'bg--picked' : ''}>{item}</button>
+  //       // })}
 
-        styles={styles}
-        setAnsweredValue={setAnswered}
-        setScoreValue={scores}
-      />
-    );
-  });
+  //       styles={styles}
+  //       setAnsweredValue={setAnswered}
+  //       setScoreValue={scores}
+  //     />
+  //   );
+  // });
 
   // This function handles the submission, it is not quite necessary as I have performed its underlying operations in the function below it but I just left it here so I could have another layer of conditional render option(in the submit button lies its use case)👍
   const submitQuiz = () => {
@@ -228,8 +228,8 @@ const handleWelcome = () => {
    ***The conditional trigger for the dark mode toggle lies here also
    */
   // useEffect(() => {
-  //   if (!allAnswered && restart) {
-  //     quizMap.forEach((question) => {
+  //   if (!allAnswered) {
+  //     quizEnter.forEach((question) => {
   //       if (currentAnswer === question.props.answers) {
   //         setNumCorrectAnswers((prev) => prev + 1);
   //       } else {
@@ -261,7 +261,7 @@ const handleWelcome = () => {
       >
         {start ? (
           <>
-            {quizEnter}
+            {quiz}
             {/* {checker && <h2>Your Score: {numCorrectAnswers}/5</h2>} */}
             {!allAnswered && warning ? (
               <>
